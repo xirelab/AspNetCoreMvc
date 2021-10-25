@@ -1,0 +1,64 @@
+@model AspNetCoreMvc.Models.PersonModel
+ 
+@{
+    Layout = null;
+}
+
+@section scripts{
+    @* <script type="text/javascript" src="~/js/site.js"></script> *@
+    <script type="text/javascript">
+        //Here is the custom javascript just for this view.
+        alert("I will only say hello on view.");    
+    </script>
+}
+
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>    
+    
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th colspan="2" align="center">Person Details</th>
+            </tr>
+            <tr>
+                <td>PersonId: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.PersonId)
+                </td>
+            </tr>
+            <tr>
+                <td>Name: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>Gender: </td>
+                <td>
+                    @Html.DropDownListFor(m => m.Gender, new List<SelectListItem>
+                   { new SelectListItem{Text="Male", Value="M"},
+                     new SelectListItem{Text="Female", Value="F"}}, "Please select")
+                </td>
+            </tr>
+            <tr>
+                <td>City: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.City)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"/></td>
+                <button id="post-btn">I'm a button</button>
+            </tr>
+        </table>
+    }
+</body>
+</html>
